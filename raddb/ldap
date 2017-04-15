@@ -1,8 +1,8 @@
 ldap {
-	server = 'ldap'
-	identity = 'cn=admin,dc=1zhen,dc=com'
-	password = 'admin'
-	base_dn = 'dc=1zhen,dc=com'
+	server = '{{LDAP_SERVER}}'
+	identity = '{{LDAP_ADMIN_DN}}'
+	password = '{{LDAP_ADMIN_PASSWORD}}'
+	base_dn = '{{LDAP_BASE_DN}}'
 
 	update {
 		control:Password-With-Header	+= 'userPassword'
