@@ -11,6 +11,7 @@ RUN rm -f /etc/raddb/mods-enabled/eap
 
 ADD mo /usr/bin/mo
 ADD raddb/ldap /templates/
+ADD raddb/clients.conf /templates/
 ADD raddb/site /etc/raddb/sites-enabled/default
 ADD raddb/radiusd.conf /etc/raddb/radiusd.conf
 ADD run.sh /run.sh
