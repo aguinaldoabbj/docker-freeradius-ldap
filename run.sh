@@ -24,7 +24,12 @@ if [ -z "$LDAP_CLIENT_SECRET" ]; then
     LDAP_CLIENT_SECRET="somesecret"
 fi
 
+if [ -z "$MY_DOMAIN" ]; then
+    MY_DOMAIN="EXAMPLE"
+fi
+
 /usr/bin/mo /templates/ldap > /etc/raddb/mods-enabled/ldap
+/usr/bin/mo /templates/ntlm_auth > /etc/raddb/mods-enabled/ntlm_auth
 /usr/bin/mo /templates/clients.conf > /etc/raddb/clients.conf
 radiusd -f -X
 

@@ -19,12 +19,14 @@ ldap {
 
 	user {
 		base_dn = "${..base_dn}"
-		filter = "(uid=%{%{Stripped-User-Name}:-%{User-Name}})"
+#		filter = "(uid=%{%{Stripped-User-Name}:-%{User-Name}})"
+		filter = "(samaccountname=%{%{Stripped-User-Name}:-%{User-Name}})"
 	}
 
 	group {
 		base_dn = "${..base_dn}"
-		filter = '(objectClass=posixGroup)'
+#		filter = '(objectClass=posixGroup)'
+		filter = '(&(objectClass=user)(objectCategory=person))'
 		membership_attribute = 'memberOf'
 	}
 
@@ -95,16 +97,18 @@ ldap {
 	}
 
 	tls {
-#		start_tls = yes
+		start_tls = yes
 
 #		ca_file	= ${certdir}/cacert.pem
+		ca_file	= /etc/raddb/certs/server.pem
 
 #		ca_path	= ${certdir}
-#		certificate_file = /path/to/radius.crt
-#		private_key_file = /path/to/radius.key
+		ca_path	= /etc/raddb/certs/
+#		certificate_file = /etc/raddb/certs/server.pem
+#		private_key_file = /etc/raddb/certs/server.pem
 #		random_file = /dev/urandom
 
-#		require_cert	= 'demand'
+		require_cert	= 'allow'
 	}
 
 	pool {
